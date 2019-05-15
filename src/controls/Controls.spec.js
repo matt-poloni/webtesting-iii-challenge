@@ -12,7 +12,8 @@ describe('<Controls />', () => {
   describe('Close/Open Gate button', () => {
     it("should provide a button to toggle the 'closed' state", () => {
       const { getByText } = render(<Controls />);
-      getByText(/Close Gate/);
+      const button = getByText(/Close Gate/);
+      expect(button.nodeName).toBe('BUTTON');
     })
 
     it("should be disabled if passed a 'true' locked prop", () => {
@@ -35,7 +36,8 @@ describe('<Controls />', () => {
   describe('Lock/Unlock Gate button', () => {
     it("should provide a button to toggle the 'locked' state", () => {
       const { getByText } = render(<Controls />);
-      getByText(/Lock Gate/);
+      const button = getByText(/Lock Gate/);
+      expect(button.nodeName).toBe('BUTTON');
     })
     
     it("should be disabled if passed a 'false' closed prop", () => {

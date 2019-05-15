@@ -18,12 +18,12 @@ describe('<Dashboard />', () => {
   it('should display <Display />', () => {
     const { getByText } = render(<Dashboard />);
     const display = getByText(/locked/i).parentElement;
-    expect(display.className).toBe('display panel');
+    expect(display.classList).toContain('display');
   })
 
   it('should display <Controls />', () => {
     const { getByText } = render(<Dashboard />);
     const controls = getByText(/gate/i).parentElement;
-    expect(controls.className).toBe('controls panel');
+    expect(controls.classList).toContain('controls');
   })
 })

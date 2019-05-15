@@ -27,7 +27,7 @@ describe('<Display />', () => {
     it("should use 'red-led' class for 'Closed' if passed a 'true' closed prop", () => {
       const { getByText } = render(<Display closed={true} />);
       const closed = getByText(/Closed/);
-      expect(closed.className).toBe('led red-led');
+      expect(closed.classList).toContain('red-led');
     })
   })
 
@@ -40,7 +40,7 @@ describe('<Display />', () => {
     it("should use 'green-led' class for 'Open' if passed a 'false' closed prop", () => {
       const { getByText } = render(<Display closed={false} />);
       const closed = getByText(/Open/);
-      expect(closed.className).toBe('led green-led');
+      expect(closed.classList).toContain('green-led');
     })
   })
 
@@ -53,7 +53,7 @@ describe('<Display />', () => {
     it("should use 'red-led' class for 'Locked' if passed a 'true' locked prop", () => {
       const { getByText } = render(<Display locked={true} />);
       const locked = getByText(/Locked/);
-      expect(locked.className).toBe('led red-led');
+      expect(locked.classList).toContain('red-led');
     })
   })
 
@@ -66,7 +66,7 @@ describe('<Display />', () => {
     it("should use 'green-led' class for 'Unlocked' if passed a 'false' locked prop", () => {
       const { getByText } = render(<Display locked={false} />);
       const locked = getByText(/Unlocked/);
-      expect(locked.className).toBe('led green-led');
+      expect(locked.classList).toContain('green-led');
     })
   })
 })

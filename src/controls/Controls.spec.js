@@ -78,22 +78,22 @@ describe('<Controls />', () => {
 
   describe('Snapshots', () => {
     it('should match Closed/Locked snapshot', () => {
-      const tree = renderer.create(<Controls closed={true} locked={true} toggleLocked={function toggleLocked(){}} toggleClosed={function toggleClosed(){}} />);
+      const tree = renderer.create(<Controls closed={true} locked={true} toggleLocked={()=>{}} toggleClosed={()=>{}} />);
       expect(tree).toMatchSnapshot();
     })
 
     it('should match Closed/Unlocked snapshot', () => {
-      const tree = renderer.create(<Controls closed={true} locked={false} toggleLocked={function toggleLocked(){}} toggleClosed={function toggleClosed(){}} />);
+      const tree = renderer.create(<Controls closed={true} locked={false} toggleLocked={()=>{}} toggleClosed={()=>{}} />);
       expect(tree).toMatchSnapshot();
     })
 
     it('should match Open/Locked snapshot', () => {
-      const tree = renderer.create(<Controls closed={false} locked={true} toggleLocked={function toggleLocked(){}} toggleClosed={function toggleClosed(){}} />);
+      const tree = renderer.create(<Controls closed={false} locked={true} toggleLocked={()=>{}} toggleClosed={()=>{}} />);
       expect(tree).toMatchSnapshot();
     })
 
     it('should match Open/Unlocked snapshot', () => {
-      const tree = renderer.create(<Controls closed={false} locked={false} toggleLocked={function toggleLocked(){}} toggleClosed={function toggleClosed(){}} />);
+      const tree = renderer.create(<Controls closed={false} locked={false} toggleLocked={()=>{}} toggleClosed={()=>{}} />);
       expect(tree).toMatchSnapshot();
     })
   })

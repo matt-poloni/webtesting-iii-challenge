@@ -11,16 +11,19 @@ describe('<Dashboard />', () => {
 
   it('should match snapshot', () => {
     const tree = renderer.create(<Dashboard />).toJSON();
+    console.log(tree);
     expect(tree).toMatchSnapshot();
   });
 
-  it('should display <Controls />', () => {
-    const { getByText } = render(<Dashboard />);
-    getByText(/locked/i);
-  })
-
   it('should display <Display />', () => {
     const { getByText } = render(<Dashboard />);
-    getByText(/gate/i);
+    const display = getByText(/locked/i).parentElement;
+    expect(display.className).toBe('display panel');
+  })
+
+  it('should display <Controls />', () => {
+    const { getByText } = render(<Dashboard />);
+    const controls = getByText(/gate/i).parentElement;
+    expect(controls.className).toBe('controls panel');
   })
 })

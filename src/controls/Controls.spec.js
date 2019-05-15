@@ -1,4 +1,5 @@
 import React from 'react';
+import renderer from 'react-test-renderer';
 import { render, fireEvent } from 'react-testing-library';
 import 'react-testing-library/cleanup-after-each';
 import Controls from './Controls';
@@ -72,6 +73,28 @@ describe('<Controls />', () => {
       getByText(/Unlock Gate/);
       fireEvent.click(button);
       getByText(/Lock Gate/);
+    })
+  })
+
+  describe('Snapshots', () => {
+    it('should match Closed/Locked snapshot', () => {
+      const tree = renderer.create(<Controls closed={true} locked={true} toggleLocked={function toggleLocked(){}} toggleClosed={function toggleClosed(){}} />);
+      expect(tree).toMatchSnapshot();
+    })
+
+    it('should match Closed/Unlocked snapshot', () => {
+      const tree = renderer.create(<Controls closed={true} locked={false} toggleLocked={function toggleLocked(){}} toggleClosed={function toggleClosed(){}} />);
+      expect(tree).toMatchSnapshot();
+    })
+
+    it('should match Open/Locked snapshot', () => {
+      const tree = renderer.create(<Controls closed={false} locked={true} toggleLocked={function toggleLocked(){}} toggleClosed={function toggleClosed(){}} />);
+      expect(tree).toMatchSnapshot();
+    })
+
+    it('should match Open/Unlocked snapshot', () => {
+      const tree = renderer.create(<Controls closed={false} locked={false} toggleLocked={function toggleLocked(){}} toggleClosed={function toggleClosed(){}} />);
+      expect(tree).toMatchSnapshot();
     })
   })
 })

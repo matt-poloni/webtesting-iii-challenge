@@ -18,11 +18,19 @@ describe('<Controls />', () => {
 
     it("should be disabled if passed a 'true' locked prop", () => {
       const { getByText } = render(<Controls locked={true} />);
-      const closeBtn = getByText(/Close Gate/);
+      const button = getByText(/Close Gate/);
       const lockBtn = getByText(/Unlock Gate/);
-      expect(closeBtn.disabled).toBe(true);
+      expect(button.disabled).toBe(true);
     })
     
+    it("should not fire the onClick event when clicked if passed a 'true' locked prop", () => {
+      const spy = jest.fn();
+      const { getByText } = render(<Controls locked={true} toggleLocked={spy} />);
+      const button = getByText(/Close Gate/);
+      fireEvent.click(button);
+      expect(spy).not.toHaveBeenCalled();
+    })
+
     it("should toggle the button's text when clicked", () => {
       const { getByText } = render(<Dashboard />);
       const button = getByText(/Close Gate/);
@@ -43,18 +51,26 @@ describe('<Controls />', () => {
     it("should be disabled if passed a 'false' closed prop", () => {
       const { getByText } = render(<Controls closed={false} />);
       const closeBtn = getByText(/Close Gate/);
-      const lockBtn = getByText(/Lock Gate/);
-      expect(lockBtn.disabled).toBe(true);
+      const button = getByText(/Lock Gate/);
+      expect(button.disabled).toBe(true);
+    })
+
+    it("should not fire the onClick event when clicked if passed a 'false' closed prop", () => {
+      const spy = jest.fn();
+      const { getByText } = render(<Controls closed={false} toggleLocked={spy} />);
+      const button = getByText(/Lock Gate/);
+      fireEvent.click(button);
+      expect(spy).not.toHaveBeenCalled();
     })
 
     it("should toggle the button's text when clicked", () => {
       const { getByText } = render(<Dashboard />);
       const closeBtn = getByText(/Close Gate/);
-      const lockBtn = getByText(/Lock Gate/);
+      const button = getByText(/Lock Gate/);
       fireEvent.click(closeBtn);
-      fireEvent.click(lockBtn);
+      fireEvent.click(button);
       getByText(/Unlock Gate/);
-      fireEvent.click(lockBtn);
+      fireEvent.click(button);
       getByText(/Lock Gate/);
     })
   })

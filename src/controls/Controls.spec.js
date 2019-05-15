@@ -14,6 +14,13 @@ describe('<Controls />', () => {
       const { getByText } = render(<Controls />);
       getByText(/Close Gate/);
     })
+
+    it("should be disabled if passed a 'true' locked prop", () => {
+      const { getByText } = render(<Controls locked={true} />);
+      const closeBtn = getByText(/Close Gate/);
+      const lockBtn = getByText(/Unlock Gate/);
+      expect(closeBtn.disabled).toBe(true);
+    })
     
     it("should toggle the button's text when clicked", () => {
       const { getByText } = render(<Dashboard />);
@@ -31,6 +38,13 @@ describe('<Controls />', () => {
       getByText(/Lock Gate/);
     })
     
+    it("should be disabled if passed a 'false' closed prop", () => {
+      const { getByText } = render(<Controls closed={false} />);
+      const closeBtn = getByText(/Close Gate/);
+      const lockBtn = getByText(/Lock Gate/);
+      expect(lockBtn.disabled).toBe(true);
+    })
+
     it("should toggle the button's text when clicked", () => {
       const { getByText } = render(<Dashboard />);
       const closeBtn = getByText(/Close Gate/);

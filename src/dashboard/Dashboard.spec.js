@@ -12,7 +12,7 @@ describe('<Dashboard />', () => {
   it('should match snapshot', () => {
     const tree = renderer.create(<Dashboard />).toJSON();
     expect(tree).toMatchSnapshot();
-  });
+  })
 
   it('should display <Display />', () => {
     const { getByText } = render(<Dashboard />);

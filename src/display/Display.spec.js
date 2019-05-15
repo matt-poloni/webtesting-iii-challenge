@@ -1,4 +1,5 @@
 import React from 'react';
+import renderer from 'react-test-renderer';
 import { render } from 'react-testing-library';
 import 'react-testing-library/cleanup-after-each';
 import Display from './Display';
@@ -67,6 +68,28 @@ describe('<Display />', () => {
       const { getByText } = render(<Display locked={false} />);
       const locked = getByText(/Unlocked/);
       expect(locked.classList).toContain('green-led');
+    })
+  })
+
+  describe('Snapshots', () => {
+    it('should match Closed/Locked snapshot', () => {
+      const tree = renderer.create(<Display closed={true} locked={true} />);
+      expect(tree).toMatchSnapshot();
+    })
+
+    it('should match Closed/Unlocked snapshot', () => {
+      const tree = renderer.create(<Display closed={true} locked={false} />);
+      expect(tree).toMatchSnapshot();
+    })
+
+    it('should match Open/Locked snapshot', () => {
+      const tree = renderer.create(<Display closed={false} locked={true} />);
+      expect(tree).toMatchSnapshot();
+    })
+
+    it('should match Open/Unlocked snapshot', () => {
+      const tree = renderer.create(<Display closed={false} locked={false} />);
+      expect(tree).toMatchSnapshot();
     })
   })
 })

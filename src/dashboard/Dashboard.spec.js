@@ -11,7 +11,6 @@ describe('<Dashboard />', () => {
 
   it('should match snapshot', () => {
     const tree = renderer.create(<Dashboard />).toJSON();
-    console.log(tree);
     expect(tree).toMatchSnapshot();
   });
 

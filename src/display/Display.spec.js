@@ -17,4 +17,24 @@ describe('<Display />', () => {
     const { getByText } = render(<Display />);
     getByText(/open/i);
   })
+
+  it("should display 'Closed' if passed a 'true' closed prop", () => {
+    const { getByText } = render(<Display closed={true} />);
+    getByText(/Closed/);
+  })
+
+  it("should display 'Open' if passed a 'false' closed prop", () => {
+    const { getByText } = render(<Display closed={false} />);
+    getByText(/Open/);
+  })
+
+  it("should display 'Locked' if passed a 'true' locked prop", () => {
+    const { getByText } = render(<Display locked={true} />);
+    getByText(/Locked/);
+  })
+
+  it("should display 'Unlocked' if passed a 'false' locked prop", () => {
+    const { getByText } = render(<Display locked={false} />);
+    getByText(/Unlocked/);
+  })
 })

@@ -26,10 +26,18 @@ describe('<Controls />', () => {
     
     it("should not fire the onClick event when clicked if passed a 'true' locked prop", () => {
       const spy = jest.fn();
-      const { getByText } = render(<Controls locked={true} toggleLocked={spy} />);
+      const { getByText } = render(<Controls locked={true} toggleClosed={spy} />);
       const button = getByText(/Close Gate/);
       fireEvent.click(button);
       expect(spy).not.toHaveBeenCalled();
+    })
+
+    it("should fire the onClick event when clicked if passed a 'false' locked prop", () => {
+      const spy = jest.fn();
+      const { getByText } = render(<Controls locked={false} toggleClosed={spy} />);
+      const button = getByText(/Close Gate/);
+      fireEvent.click(button);
+      expect(spy).toHaveBeenCalled();
     })
 
     it("should toggle the button's text when clicked", () => {
@@ -62,6 +70,14 @@ describe('<Controls />', () => {
       const button = getByText(/Lock Gate/);
       fireEvent.click(button);
       expect(spy).not.toHaveBeenCalled();
+    })
+
+    it("should fire the onClick event when clicked if passed a 'true' closed prop", () => {
+      const spy = jest.fn();
+      const { getByText } = render(<Controls closed={true} toggleLocked={spy} />);
+      const button = getByText(/Lock Gate/);
+      fireEvent.click(button);
+      expect(spy).toHaveBeenCalled();
     })
 
     it("should toggle the button's text when clicked", () => {
